@@ -17,6 +17,7 @@ import LogoImage from '../logo-noir-or-vecto-uni_1.png';
 import '../index.css';
 import './Header.css';
 import { NavLink } from 'react-router-dom';
+import { useMediaQuery } from '@mui/material';
 
 interface DrawerAppBarProps {
   window?: Window;
@@ -71,8 +72,11 @@ export default function DrawerAppBar() {
 
   const container = window !== undefined ? () => window.document.body : undefined;
 
+  const isSmallScreen = useMediaQuery('(max-width:600px)'); // Ajustez la taille de l'écran selon vos besoins
+
+
   return (
-    <Box sx={{  display: 'flex', color: 'black', height: '200px', zIndex: 1000  }}>
+    <Box sx={{ display: 'flex', color: 'black', height: '200px', zIndex: 1000 }}>
       <div className='header-bg'>
         <CssBaseline />
         <AppBar
@@ -82,7 +86,8 @@ export default function DrawerAppBar() {
             boxShadow: 'none',
             backgroundColor: navColor,
             transition: 'background-color 0.8s ease', // Ajout d'une transition
-          }}>
+          }}
+        >
           <Toolbar style={{ minHeight: '100px' }}>
             <IconButton
               color="inherit"
@@ -94,7 +99,7 @@ export default function DrawerAppBar() {
               <MenuIcon />
             </IconButton>
             <div className="LogoStyle">
-              <img src={LogoImage} alt="Logo" />
+              <img src={LogoImage} alt="Logo" style={{width:"8ch",maxWidth:"none"}}/>
             </div>
             <Typography
               variant="h6"
@@ -109,21 +114,39 @@ export default function DrawerAppBar() {
               }}
             ></Typography>
             <Box className="BoxHeader">
-              {navItems.map((item) => (
-                <Button
-                key={item.label}
-                component={NavLink}
-                to={item.path}
-                sx={{ color: 'white', fontSize: '20px', fontFamily: 'Roboto-Regular', textTransform: 'none', marginLeft: '25px' }}
-                >
-                 {item.label}
-                </Button>
-              ))}
+              {!isSmallScreen && // Ajoutez cette condition pour afficher les boutons uniquement sur les écrans non mobiles
+                navItems.map((item) => (
+                  <Button
+                    key={item.label}
+                    component={NavLink}
+                    to={item.path}
+                    sx={{ color: 'white', fontSize: '20px', fontFamily: 'Roboto-Regular', textTransform: 'none', marginLeft: '25px' }}
+                  >
+                    {item.label}
+                  </Button>
+                ))}
             </Box>
           </Toolbar>
         </AppBar>
       </div>
+      <nav>
+        <Drawer
+          container={container}
+          variant="temporary"
+          open={mobileOpen}
+          onClose={handleDrawerToggle}
+          ModalProps={{
+            keepMounted: true, // Better open performance on mobile.
+          }}
+          sx={{
+            display: { xs: 'block', sm: 'none' },
+            '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
+          }}
+        >
+          {drawer}
+        </Drawer>
+      </nav>
     </Box>
   );
-};
+}
 
