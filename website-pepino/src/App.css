@@ -80,3 +80,12 @@ html, body {
   display: flex;
   flex-direction: column;
 }
+
+
+.BgMain{
+  background-image: url('./logo-noir-or-vecto-uni_1.png');
+}
+
+main{
+  margin-top: 200px;
+}

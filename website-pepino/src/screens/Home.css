@@ -4,6 +4,7 @@
     max-width: 60.4rem;
     font-weight: 700;
     line-height: 1.3;
+
 }
 
 .DescAbout{
@@ -20,7 +21,7 @@
 @media (min-width: 900px){
 .About {
     gap: 70px;
-    padding: 95px 0px 95px;
+    padding: 300px 0px 95px;
     grid-template-columns: repeat(2, minmax(0, 1fr));
 
 }
@@ -48,16 +49,17 @@
 }
 
 .TextAbout{
-    margin: auto
+    margin: auto;
+    position: relative;
+    padding-left: 100px;
 }
 
 
-.BackgroundImg{
-    background-image: url(../HeaderBack.jpg);
+.ImgBackH{
     width: 100%;
-    height: 100%;
-    background-size: contain;
-    background-repeat: space;
+    max-width: 100vw; /* Définit une largeur maximale équivalente à la largeur de la vue */
+    height: auto;
+    margin-top: 120px;
 }
 
 /* @media (min-width: 900px){
@@ -65,3 +67,5 @@
     min-height: calc(100vh - 9rem);
 }
 } */
+
+

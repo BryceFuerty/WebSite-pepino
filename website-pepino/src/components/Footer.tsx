@@ -10,15 +10,17 @@ import LogoImg from "../Logo.jpg";
 export default function Footer() {
   return (
     <Box
-      component="footer"
-      sx={{
-        backgroundColor: "black",
-        p: 6,
-        width: '100%',
-        maxWidth: "100%",
-        padding: "20px",
-      }}
-    >
+    component="footer"
+    className="fixed-bottom" // Ajoutez cette classe
+    sx={{
+      backgroundColor: "black",
+      p: 6,
+      width: '100%',
+      maxWidth: "100%",
+      padding: "20px",
+      marginTop: "80px"
+    }}
+  >
       <div style={{ maxWidth: "100%", marginLeft: "100px", marginRight: "100px" }}>
         <Grid container spacing={3}>
           <Grid item xs={12} sm={4} sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
