@@ -17,6 +17,7 @@
 .About{
     display: grid;
     padding: 5ch;
+    margin-top: 5ch;
 }
 
 @media (min-width: 900px){

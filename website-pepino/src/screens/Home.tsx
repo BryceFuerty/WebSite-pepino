@@ -28,7 +28,7 @@ export const Home = () =>  {
       </Box>
 
       <Box sx={{ backgroundColor: "#F9F9F9", paddingTop: "50px", paddingBottom: "50px" }}>
-        <div style={{ display: "grid", gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', justifyItems: 'center' }}>
+        <div style={{ display: "grid", gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', justifyItems: 'center',textAlign: "center"}}>
           <Typography className='TitleAbout' sx={{fontSize:"35px", fontFamily:'Roboto-Bold',paddingBottom:"50px"}}>
             Quelques-unes de mes créations
           </Typography>
