@@ -36,7 +36,6 @@ export const Home = () =>  {
 
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', justifyContent: 'center' }}>
           <Swipe/>
-          <Swipe/>
         </div>
       </Box>
   </div>

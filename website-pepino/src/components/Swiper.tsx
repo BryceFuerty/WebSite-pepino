@@ -26,10 +26,10 @@ export default function Swipe(){
         modules={[Autoplay, Pagination, Navigation]}
         className="mySwiper"
       
-      style={{width:"500px"}}
+      style={{width:"35rem", maxWidth: "100%"}}
       >
 
-      <SwiperSlide><img style={{width:"500px"}} src={floralImg}></img></SwiperSlide>
+      <SwiperSlide><img src={floralImg}></img></SwiperSlide>
       <SwiperSlide><img src={floralImg}></img></SwiperSlide>
       <SwiperSlide><img src={floralImg}></img></SwiperSlide>
       <SwiperSlide><img src={floralImg}></img></SwiperSlide>
