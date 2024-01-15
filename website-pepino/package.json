@@ -13,7 +13,7 @@
     "web-vitals": "^3.5.0"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "npm install --force",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
