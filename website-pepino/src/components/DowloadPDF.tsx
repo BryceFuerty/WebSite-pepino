@@ -12,7 +12,6 @@ const useStyles = makeStyles((theme: Theme) => ({
         },
       },
 }));
-
 export const PDFDownloader = () => {
     const classes = useStyles();
 

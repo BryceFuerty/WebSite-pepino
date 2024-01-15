@@ -4,9 +4,8 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
-import Lightbox from 'react-image-lightbox';
-import 'react-image-lightbox/style.css';
 import floralImg from '../Floral.jpg';
+import Lightbox from 'react-18-image-lightbox';
 
 export default function SwipeCenter() {
   const [lightboxIsOpen, setLightboxIsOpen] = useState<boolean>(false);
