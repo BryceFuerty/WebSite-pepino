@@ -4,6 +4,8 @@
     "@emotion/styled": "^11.11.0",
     "@mui/icons-material": "^5.15.0",
     "@mui/material": "^5.15.0",
+    "@mui/styles": "^5.15.4",
+    "react-image-lightbox": "^5.1.4",
     "react-router-dom": "^6.21.0",
     "react-scripts": "^5.0.1",
     "swiper": "^11.0.5",

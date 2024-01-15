@@ -25,8 +25,8 @@
     background-image: url('../HeaderBack.jpg'); /* Remplacez par le chemin correct */
     background-attachment: fixed;
     background-size: cover;
+    background-position: center; /* Centre l'image horizontalement */
 }
-
 
 .header {
     height: 50px;

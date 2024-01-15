@@ -51,6 +51,8 @@ export default function DrawerAppBar() {
     setMobileOpen((prevState) => !prevState);
   };
 
+  const isSmallScreen = useMediaQuery('(max-width:899px)'); // Ajustez la taille de l'écran selon vos besoins
+
 
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center'}}>
@@ -72,7 +74,7 @@ export default function DrawerAppBar() {
 
   const container = window !== undefined ? () => window.document.body : undefined;
 
-  const isSmallScreen = useMediaQuery('(max-width:600px)'); // Ajustez la taille de l'écran selon vos besoins
+ 
 
 
   return (
@@ -89,12 +91,15 @@ export default function DrawerAppBar() {
           }}
         >
           <Toolbar style={{ minHeight: '100px' }}>
-            <IconButton
+          <IconButton
               color="inherit"
               aria-label="open drawer"
               edge="start"
               onClick={handleDrawerToggle}
-              sx={{ mr: 2, display: { sm: 'none' } }}
+              sx={{
+                mr: 2,
+                display: { xs: 'block', sm: 'block',md: 'none' }, // Affiche uniquement sur les écrans de moins de 900 pixels
+              }}
             >
               <MenuIcon />
             </IconButton>
