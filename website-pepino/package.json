@@ -9,7 +9,7 @@
     "react-router-dom": "^6.21.0",
     "react-scripts": "^5.0.1",
     "swiper": "^11.0.5",
-    "react": "^17.0.2",
+    "react": "17.0.2",
     "web-vitals": "^3.5.0"
   },
   "scripts": {
