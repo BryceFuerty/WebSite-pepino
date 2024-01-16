@@ -38,7 +38,7 @@ export default function SwipeLeft() {
         navigation={true}
         modules={[Autoplay, Pagination, Navigation]}
         className="mySwiper"
-        style={{ width: "30rem", height:"30rem" ,maxWidth: "100%" }}
+        style={{ width: "30rem", height:"30rem" ,maxWidth: "100%"}}
       >
         {images.map((imageUrl, index) => (
           <SwiperSlide key={index} onClick={() => handleItemClick(index)}>

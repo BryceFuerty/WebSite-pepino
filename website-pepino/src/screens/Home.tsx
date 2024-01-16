@@ -32,16 +32,20 @@ export const Home = () =>  {
       </Box>
 
       <Box sx={{ backgroundColor: "#F9F9F9", paddingTop: "50px", paddingBottom: "50px" }}>
-        <div style={{ display: "grid", gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', justifyItems: 'center',textAlign: "center"}}>
-          <Typography className='TitleAbout' sx={{fontSize:"35px", fontFamily:'Roboto-Bold',paddingBottom:"50px"}}>
+        <div style={{ display: "flex", gridTemplateColumns: 'repeat(auto-fit, minmax(900px, 1fr))', justifyItems: 'center',textAlign: "center"}}>
+        <Typography className='TitleAbout' sx={{fontSize:"35px", fontFamily:'Roboto-Bold'}}>
             Quelques-unes de mes créations
           </Typography>
         </div>
 
         <div className='SwipperHome'>
-        <SwipeRight/>
-          <SwipeCenter/>
-        <SwipeLeft/>
+          <div style={{paddingBottom:"40px",paddingTop:"40px"}}>
+            <SwipeRight/>
+          </div>
+            <SwipeCenter/>
+          <div style={{paddingTop:"40px"}}>
+            <SwipeLeft/>
+          </div>
         </div>
         
       </Box>
@@ -55,7 +59,7 @@ export const Home = () =>  {
               Retrouver ici un fichier PDF contenant toutes les instructions nécessaire a l'entretien de votre tatouage
             </p>
           </div>
-          <div className='ImgAboutDiv'>
+          <div className='ImgAboutDiv' style={{paddingTop:"40px"}}>
             <PDFDownloader/>
           </div>
         </div>
