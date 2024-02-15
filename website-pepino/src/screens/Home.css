@@ -69,12 +69,14 @@
 } */
 
 
-@media (min-width: 1510px){
+
 .SwipperHome{
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    justify-content: center;
+    padding-top: 40px;
 
 }
-}
 
+
+.Form{
+    display: flex;
+    width: 40%;
+}

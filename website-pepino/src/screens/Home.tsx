@@ -6,11 +6,10 @@ import Card from '@mui/material/Card'; // Grid version 1
 import './Home.css'
 import ImagePep from '../profil.jpg'
 import { Container } from '@mui/material';
-import Swipe from "../components/SwiperRight";
-import { PDFDownloader } from '../components/DowloadPDF';
-import SwipeRight from '../components/SwiperRight';
+import { PDFDownloader } from '../components/DowloadPDF';;
 import SwipeCenter from '../components/SwiperCenter';
-import SwipeLeft from '../components/SwipperLeft';
+import { ContactUs } from '../components/ContactForm';
+
 
 
 export const Home = () =>  {
@@ -31,23 +30,14 @@ export const Home = () =>  {
               </div>
       </Box>
 
-      <Box sx={{ backgroundColor: "#F9F9F9", paddingTop: "50px", paddingBottom: "50px" }}>
-        <div style={{ display: "flex", gridTemplateColumns: 'repeat(auto-fit, minmax(900px, 1fr))', justifyItems: 'center',textAlign: "center"}}>
-        <Typography className='TitleAbout' sx={{fontSize:"35px", fontFamily:'Roboto-Bold'}}>
-            Quelques-unes de mes créations
-          </Typography>
-        </div>
+      <Box sx={{ backgroundColor: "#F9F9F9", paddingTop: "50px", paddingBottom: "50px", display: "flex", flexDirection: "column", alignItems: "center" }}>
+        <Typography className='TitleAbout' sx={{ fontSize: "35px", fontFamily: 'Roboto-Bold' }}>
+          Mes tatouages
+        </Typography>
 
-        <div className='SwipperHome'>
-          <div style={{paddingBottom:"40px",paddingTop:"40px"}}>
-            <SwipeRight/>
-          </div>
-            <SwipeCenter/>
-          <div style={{paddingTop:"40px"}}>
-            <SwipeLeft/>
-          </div>
+        <div className='SwipperHome' style={{ marginTop: '20px' }}>
+          <SwipeCenter />
         </div>
-        
       </Box>
 
 
@@ -65,6 +55,7 @@ export const Home = () =>  {
         </div>
         
       </Box>
+
   </div>
    
   );
