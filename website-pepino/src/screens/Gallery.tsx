@@ -41,6 +41,9 @@ import ornemental8 from '../assets/Ornement/Ornemental (8).jpg';
 import ornemental9 from '../assets/Ornement/Ornemental (9).jpg';
 
 import { Box, FormControl, InputBase, InputLabel, MenuItem, Select, SelectChangeEvent, Typography, styled } from '@mui/material';
+import { SlideshowLightbox } from 'lightbox.js-react';
+import 'lightbox.js-react/dist/index.css'
+
 
 const BootstrapInput = styled(InputBase)(({ theme }) => ({
   'label + &': {
@@ -141,7 +144,8 @@ const Gallery: React.FC = () => {
 
   return (
     <>
-      <FormControl variant="standard" style={{paddingTop: "300px", width:"15%", paddingLeft:"5%"}}>
+      <FormControl variant="standard" style={{paddingTop: "300px", width:"380px", paddingLeft:"182px"}}>
+      <div style={{paddingBottom:"20px"}}>
       <InputLabel htmlFor="demo-customized-select-native">Age</InputLabel>
           <Select
             labelId="demo-simple-select-label"
@@ -150,6 +154,7 @@ const Gallery: React.FC = () => {
             label="Filtre"
             onChange={choiceImg}
             input={<BootstrapInput />}
+            
           >
             <MenuItem value={0}>Tout</MenuItem>
             <MenuItem value={1}>Ornemental</MenuItem>
@@ -157,12 +162,18 @@ const Gallery: React.FC = () => {
             <MenuItem value={3}>Floral</MenuItem>
            
         </Select>
+                
+      </div>
       </FormControl>
-       <div style={{ paddingTop: "20px", paddingLeft: "50px",paddingRight: "50px", display: "grid", gridTemplateColumns: `repeat(${newSlidesPerView}, 1fr)`, gap: "20px" }}>
-      {currentImages.map((imageUrl, index) => (
-        <img key={index} src={imageUrl} alt={`Image ${index + 1}`} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
-      ))}
-    </div>
+       
+       <div style={{display:"flex", justifyContent:"center"}}>
+      <SlideshowLightbox className={`container mx-auto grid grid-cols-${newSlidesPerView} gap-2`} showThumbnails={true}>
+        {currentImages.map((imageUrl, index) => (
+          <img key={index} src={imageUrl} alt={`Image ${index + 1}`} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+        ))}
+      </SlideshowLightbox>
+      </div>
+    
     </>
   );
 };

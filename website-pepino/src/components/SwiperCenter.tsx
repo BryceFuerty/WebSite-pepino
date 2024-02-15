@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Autoplay, Navigation, Pagination, Zoom } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
@@ -22,10 +22,31 @@ import Lightbox from 'react-18-image-lightbox';
 
 
 export default function SwipeCenter() {
- 
-
+  const [widthSwp, setwidthSwp] = useState(40)
+  const [heightSwp, setheightSwp] = useState(35)
   const images: string[] = [Home1,Home2,Home3,Home4,Home5,Home6,Home7,Home8,Home9]; // Ajoutez vos images ici
 
+  useEffect(() => {
+    const handleResize = () => {
+
+      console.log(widthSwp)
+      
+      if (window.innerWidth > 700) {
+        setwidthSwp(40);
+        setheightSwp(35)
+      }else {
+        setwidthSwp(20);
+        setheightSwp(20)
+      }
+
+    };
+  
+    handleResize();
+    window.addEventListener('resize', handleResize);
+  
+
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   return (
     <>
@@ -44,7 +65,7 @@ export default function SwipeCenter() {
         }}
         className="mySwiper"
         modules={[Zoom, Autoplay, Pagination, Navigation]}
-        style={{ width: "40rem", height:"35rem" , position:"relative"}}
+        style={{ width: `${widthSwp}rem`, height:`${heightSwp}rem` , position:"relative"}}
       >
         {images.map((imageUrl, index) => (
           <SwiperSlide key={index}>
