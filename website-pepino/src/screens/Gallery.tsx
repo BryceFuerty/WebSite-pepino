@@ -41,9 +41,9 @@ import ornemental8 from '../assets/Ornement/Ornemental (8).jpg';
 import ornemental9 from '../assets/Ornement/Ornemental (9).jpg';
 
 import { Box, FormControl, InputBase, InputLabel, MenuItem, Select, SelectChangeEvent, Typography, styled } from '@mui/material';
-import { SlideshowLightbox } from 'lightbox.js-react';
-import 'lightbox.js-react/dist/index.css'
 
+import 'lightbox.js-react/dist/index.css'
+import {SlideshowLightbox, initLightboxJS} from 'lightbox.js-react'
 
 const BootstrapInput = styled(InputBase)(({ theme }) => ({
   'label + &': {
@@ -166,12 +166,12 @@ const Gallery: React.FC = () => {
       </div>
       </FormControl>
        
-       <div style={{display:"flex", justifyContent:"center"}}>
-      <SlideshowLightbox className={`container mx-auto grid grid-cols-${newSlidesPerView} gap-2`} showThumbnails={true}>
-        {currentImages.map((imageUrl, index) => (
-          <img key={index} src={imageUrl} alt={`Image ${index + 1}`} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
-        ))}
-      </SlideshowLightbox>
+       <div style={{display:"flex", justifyContent:"center", margin:"20px"}}>
+        <SlideshowLightbox  className={`container mx-auto grid grid-cols-${newSlidesPerView} gap-2`} showThumbnails={true}>
+          {currentImages.map((imageUrl, index) => (
+            <img key={index} src={imageUrl} alt={`Image ${index + 1}`} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+          ))}
+        </SlideshowLightbox>
       </div>
     
     </>

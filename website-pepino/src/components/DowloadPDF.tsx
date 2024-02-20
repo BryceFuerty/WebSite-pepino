@@ -1,5 +1,5 @@
 import React from 'react';
-import instructionsPDF from './pdfs/instructions.pdf';
+import instructionsPDF from './pdfs/fiche soins.pdf';
 import { Button,Theme } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 
@@ -22,7 +22,7 @@ export const PDFDownloader = () => {
         // Créez un élément <a> avec l'attribut 'download' pour le téléchargement
         const link = document.createElement('a');
         link.href = pdfPath;
-        link.download = 'Instructions_Tattoo.pdf';
+        link.download = 'Fiche_soins.pdf';
 
         // Ajoutez l'élément à la page et déclenchez le clic
         document.body.appendChild(link);

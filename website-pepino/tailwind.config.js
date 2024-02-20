@@ -12,8 +12,6 @@ module.exports = {
     },
   },
   plugins: [
-    require('postcss-nesting'), // Ajoutez cette ligne
-    // Autres plugins...
   ],
 }
 

@@ -1,14 +1,12 @@
 body {
   font-family: sans-serif;
 }
+
+
 form {
   margin: 3rem auto 0;
   width: 24rem;
 }
-  div {
-    width: inherit;
-    margin-bottom: 1rem;
-  }
 
   label {
     display: block;
