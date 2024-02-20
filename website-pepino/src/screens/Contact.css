@@ -1,3 +1,17 @@
 .ContactBody{
-    padding-top: 15%;
+
+}
+
+
+.TextAbout{
+    margin: auto;
+    position: relative;
+}
+
+.TitleAbout{
+    font-size: 3rem;
+    max-width: 60.4rem;
+    font-weight: 700;
+    line-height: 1.3;
+
 }

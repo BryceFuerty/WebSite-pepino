@@ -15,11 +15,12 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import LogoImage from '../logo-noir-or-vecto-uni_1.png';
 import '../index.css';
-import './Header.css';
+import './HeaderSecondary.css';
+
 import { NavLink } from 'react-router-dom';
 import { useMediaQuery } from '@mui/material';
 
-interface DrawerAppBarProps {
+interface DrawerAppBarPropsTwo {
   window?: Window;
   style?: React.CSSProperties;
 }
@@ -31,14 +32,15 @@ const navItems = [
   { label: 'Contact', path: '/contact' },
 ];
 
-export default function DrawerAppBar() {
+export default function DrawerAppBarTwo() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [navSize, setnavSize] = useState("10rem");
-  const [navColor, setnavColor] = useState("transparent");
+  const [navColor, setnavColor] = useState("#000000"); // Couleur par défaut sans transparence
+
   const listenScrollEvent = () => {
-    window.scrollY > 80 ? setnavColor("#000000") : setnavColor("transparent");
     window.scrollY > 80 ? setnavSize("5rem") : setnavSize("10rem");
   };
+
   useEffect(() => {
     window.addEventListener("scroll", listenScrollEvent);
     return () => {
@@ -46,13 +48,11 @@ export default function DrawerAppBar() {
     };
   }, []);
 
-
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
   };
-  console.log('HeaderBar rendered');
-  const isSmallScreen = useMediaQuery('(max-width:899px)'); // Ajustez la taille de l'écran selon vos besoins
 
+  const isSmallScreen = useMediaQuery('(max-width:899px)');
 
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center'}}>
@@ -71,10 +71,12 @@ export default function DrawerAppBar() {
       </List>
     </Box>
   );
+
   const container = window !== undefined ? () => window.document.body : undefined;
+
   return (
     <Box sx={{ display: 'flex', color: 'black', height: '200px', zIndex: 1000 }}>
-      <div className='header-bg'>
+      <div className='header-bg-two'>
         <CssBaseline />
         <AppBar
           className="MuiAppBar-root"
@@ -82,24 +84,23 @@ export default function DrawerAppBar() {
             paddingLeft: '40px',
             boxShadow: 'none',
             backgroundColor: navColor,
-            transition: 'background-color 0.8s ease', // Ajout d'une transition
           }}
         >
           <Toolbar style={{ minHeight: '100px' }}>
-          <IconButton
+            <IconButton
               color="inherit"
               aria-label="open drawer"
               edge="start"
               onClick={handleDrawerToggle}
               sx={{
                 mr: 2,
-                display: { xs: 'block', sm: 'block',md: 'none' }, // Affiche uniquement sur les écrans de moins de 900 pixels
+                display: { xs: 'block', sm: 'block', md: 'none' },
               }}
             >
               <MenuIcon />
             </IconButton>
             <div className="LogoStyle">
-              <img src={LogoImage} alt="Logo" style={{width:"8ch",maxWidth:"none"}}/>
+              <img src={LogoImage} alt="Logo" style={{ width: "8ch", maxWidth: "none" }} />
             </div>
             <Typography
               variant="h6"
@@ -114,7 +115,7 @@ export default function DrawerAppBar() {
               }}
             ></Typography>
             <Box className="BoxHeader">
-              {!isSmallScreen && // Ajoutez cette condition pour afficher les boutons uniquement sur les écrans non mobiles
+              {!isSmallScreen &&
                 navItems.map((item) => (
                   <Button
                     key={item.label}
@@ -136,7 +137,7 @@ export default function DrawerAppBar() {
           open={mobileOpen}
           onClose={handleDrawerToggle}
           ModalProps={{
-            keepMounted: true, // Better open performance on mobile.
+            keepMounted: true,
           }}
           sx={{
             display: { xs: 'block', sm: 'none' },
@@ -149,4 +150,3 @@ export default function DrawerAppBar() {
     </Box>
   );
 }
-

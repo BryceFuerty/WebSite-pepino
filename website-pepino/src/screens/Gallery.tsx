@@ -42,8 +42,15 @@ import ornemental9 from '../assets/Ornement/Ornemental (9).jpg';
 
 import { Box, FormControl, InputBase, InputLabel, MenuItem, Select, SelectChangeEvent, Typography, styled } from '@mui/material';
 
-import 'lightbox.js-react/dist/index.css'
-import {SlideshowLightbox, initLightboxJS} from 'lightbox.js-react'
+import LightGallery from 'lightgallery/react';
+
+// import styles
+import 'lightgallery/css/lightgallery.css';
+import 'lightgallery/css/lg-zoom.css';
+import 'lightgallery/css/lg-thumbnail.css';
+
+import lgThumbnail from 'lightgallery/plugins/thumbnail';
+import lgZoom from 'lightgallery/plugins/zoom';
 
 const BootstrapInput = styled(InputBase)(({ theme }) => ({
   'label + &': {
@@ -113,7 +120,9 @@ const Gallery: React.FC = () => {
     }
   };
 
-
+  const onInit = () => {
+    console.log('lightGallery has been initialized');
+};
 
   useEffect(() => {
     const handleResize = () => {
@@ -137,17 +146,17 @@ const Gallery: React.FC = () => {
   
     handleResize();
     window.addEventListener('resize', handleResize);
-  
+    
 
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   return (
     <>
+    
     <Box>
-        <FormControl variant="standard" style={{paddingTop: "300px", width:"380px", paddingLeft:"182px"}}>
+       <FormControl variant="standard" style={{ width:"380px", paddingLeft:"182px"}}>
         <div style={{paddingBottom:"20px"}}>
-        <InputLabel htmlFor="demo-customized-select-native">Age</InputLabel>
             <Select
               labelId="demo-simple-select-label"
               id="demo-simple-select"
@@ -166,14 +175,24 @@ const Gallery: React.FC = () => {
                   
         </div>
         </FormControl>
-      </Box>
-       <div style={{display:"flex", justifyContent:"center", margin:"20px"}}>
-        <SlideshowLightbox  className={`container mx-auto grid grid-cols-${newSlidesPerView} gap-2`} showThumbnails={true}>
+       
+        <div style={{ display: "grid", gridTemplateColumns: `repeat(${newSlidesPerView}, 1fr)`, gap: "20px", justifyContent: "center", margin: "20px" }}>
+        
           {currentImages.map((imageUrl, index) => (
+             <LightGallery
+             onInit={onInit}
+             speed={500}
+             plugins={[lgThumbnail, lgZoom]}
+             
+         >
             <img key={index} src={imageUrl} alt={`Image ${index + 1}`} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+            </LightGallery>
           ))}
-        </SlideshowLightbox>
-      </div>
+         
+        </div>
+       
+      </Box>
+    
     
     </>
   );
