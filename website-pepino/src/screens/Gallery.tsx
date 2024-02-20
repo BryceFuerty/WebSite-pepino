@@ -144,28 +144,29 @@ const Gallery: React.FC = () => {
 
   return (
     <>
-      <FormControl variant="standard" style={{paddingTop: "300px", width:"380px", paddingLeft:"182px"}}>
-      <div style={{paddingBottom:"20px"}}>
-      <InputLabel htmlFor="demo-customized-select-native">Age</InputLabel>
-          <Select
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
-            value={filter}
-            label="Filtre"
-            onChange={choiceImg}
-            input={<BootstrapInput />}
+    <Box>
+        <FormControl variant="standard" style={{paddingTop: "300px", width:"380px", paddingLeft:"182px"}}>
+        <div style={{paddingBottom:"20px"}}>
+        <InputLabel htmlFor="demo-customized-select-native">Age</InputLabel>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              value={filter}
+              label="Filtre"
+              onChange={choiceImg}
+              input={<BootstrapInput />}
+              
+            >
+              <MenuItem value={0}>Tout</MenuItem>
+              <MenuItem value={1}>Ornemental</MenuItem>
+              <MenuItem value={2}>Animaux</MenuItem>
+              <MenuItem value={3}>Floral</MenuItem>
             
-          >
-            <MenuItem value={0}>Tout</MenuItem>
-            <MenuItem value={1}>Ornemental</MenuItem>
-            <MenuItem value={2}>Animaux</MenuItem>
-            <MenuItem value={3}>Floral</MenuItem>
-           
-        </Select>
-                
-      </div>
-      </FormControl>
-       
+          </Select>
+                  
+        </div>
+        </FormControl>
+      </Box>
        <div style={{display:"flex", justifyContent:"center", margin:"20px"}}>
         <SlideshowLightbox  className={`container mx-auto grid grid-cols-${newSlidesPerView} gap-2`} showThumbnails={true}>
           {currentImages.map((imageUrl, index) => (
