@@ -42,16 +42,20 @@ import ornemental9 from '../assets/Ornement/Ornemental (9).jpg';
 
 import { Box, FormControl, InputBase, InputLabel, MenuItem, Select, SelectChangeEvent, Typography, styled } from '@mui/material';
 
-import LightGallery from 'lightgallery/react';
+
 
 // import styles
+import 'lightgallery/css/lightgallery.css';
+import 'lightgallery/css/lg-zoom.css';
+import 'lightgallery/css/lg-thumbnail.css';
 import './Gallery.css';
 
 import lgThumbnail from 'lightgallery/plugins/thumbnail';
 import lgZoom from 'lightgallery/plugins/zoom';
 import Multiselect from 'multiselect-react-dropdown';
 import Lightbox from 'react-image-lightbox';
-import 'react-image-lightbox/style.css'; // Assurez-vous d'importer les styles
+import 'react-image-lightbox/style.css';
+
 
 const BootstrapInput = styled(InputBase)(({ theme }) => ({
   'label + &': {
@@ -139,7 +143,11 @@ const Gallery: React.FC = () => {
     
 
     return () => window.removeEventListener('resize', handleResize);
-  }, []);
+
+   
+  }
+  
+  , []);
 
 
   const categories = [ {name :"Floral", id:1},{name :"Animal", id:2},{name :"Ornemental", id:3}]
@@ -193,7 +201,7 @@ const Gallery: React.FC = () => {
   const [lightboxIsOpen, setLightboxIsOpen] = useState(false);
   const [lightboxIndex, setLightboxIndex] = useState(0);
 
-  const openLightbox = (index:number) => {
+  const openLightbox = (index: number) => {
     setLightboxIndex(index);
     setLightboxIsOpen(true);
   };
@@ -220,7 +228,7 @@ const Gallery: React.FC = () => {
   <div style={{display:"flex", flexDirection: "row", justifyContent:"center"}}>
   <FormControl variant="standard" style={{ borderWidth:"2px", border:"-moz-initial",display:"flex",alignItems:"center", flexDirection:"row"}}>
   
-  <div className="customWidth">
+    <div className='customWidth'>
     <Multiselect
         options={categories} // Options to display in the dropdown
         selectedValues={selectedCategories} // Preselected value to persist in dropdown
@@ -237,29 +245,30 @@ const Gallery: React.FC = () => {
 
   {/* Colonne de la Box (galerie d'images) à droite */}
   <Box>
-  <div style={{ display: "grid", gridTemplateColumns: `repeat(${newSlidesPerView}, 1fr)`, gap: "20px", justifyContent: "center", margin: "20px" }}>
-        {currentImages.map((imageUrl, index) => (
-          <img
-            key={index}
-            src={imageUrl}
-            alt={`Image ${index + 1}`}
-            style={{ width: "100%", height: "100%", objectFit: "cover", cursor: "pointer" }}
-            onClick={() => openLightbox(index)}
-          />
-        ))}
-      </div>
+  <div style={{ display: 'grid', gridTemplateColumns: `repeat(${newSlidesPerView}, 1fr)`, gap: '20px', justifyContent: 'center', margin: '20px' }}>
+            {currentImages.map((imageUrl, index) => (
+              <img
+                key={index}
+                src={imageUrl}
+                alt={`Image ${index + 1}`}
+                style={{ width: '100%', height: '100%', objectFit: 'cover', cursor: 'pointer' }}
+                onClick={() => openLightbox(index)}
+              />
+            ))}
+          </div>
 
-      {lightboxIsOpen && (
-        <Lightbox
-          mainSrc={currentImages[lightboxIndex]}
-          nextSrc={currentImages[(lightboxIndex + 1) % currentImages.length]}
-          prevSrc={currentImages[(lightboxIndex + currentImages.length - 1) % currentImages.length]}
-          onCloseRequest={closeLightbox}
-          onMovePrevRequest={() => setLightboxIndex((lightboxIndex + currentImages.length - 1) % currentImages.length)}
-          onMoveNextRequest={() => setLightboxIndex((lightboxIndex + 1) % currentImages.length)}
-        />
-      )}
-    <div style={{ display:"flex", justifyContent:"center", paddingBottom:"200px"}}>
+          {lightboxIsOpen && (
+            <Lightbox
+              mainSrc={currentImages[lightboxIndex]}
+              nextSrc={currentImages[(lightboxIndex + 1) % currentImages.length]}
+              prevSrc={currentImages[(lightboxIndex + currentImages.length - 1) % currentImages.length]}
+              onCloseRequest={closeLightbox}
+              onMovePrevRequest={() => setLightboxIndex((lightboxIndex + currentImages.length - 1) % currentImages.length)}
+              onMoveNextRequest={() => setLightboxIndex((lightboxIndex + 1) % currentImages.length)}
+            />
+          )}
+
+    <div style={{ display:"flex", justifyContent:"center"}}>
       {currentImages.length === 0 ? <p>Aucun résultat</p> : null}
     </div>
   </Box>
