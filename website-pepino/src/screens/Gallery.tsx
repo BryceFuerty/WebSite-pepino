@@ -202,12 +202,20 @@ const Gallery: React.FC = () => {
   const [lightboxIndex, setLightboxIndex] = useState(0);
 
   const openLightbox = (index: number) => {
-    setLightboxIndex(index);
-    setLightboxIsOpen(true);
+    try {
+      setLightboxIndex(index);
+      setLightboxIsOpen(true);
+    } catch (error) {
+      console.error('Erreur lors de l\'ouverture de la lightbox :', error);
+    }
   };
-
+  
   const closeLightbox = () => {
-    setLightboxIsOpen(false);
+    try {
+      setLightboxIsOpen(false);
+    } catch (error) {
+      console.error('Erreur lors de la fermeture de la lightbox :', error);
+    }
   };
 
   return (
@@ -245,7 +253,7 @@ const Gallery: React.FC = () => {
 
   {/* Colonne de la Box (galerie d'images) à droite */}
   <Box>
-  <div style={{ display: 'grid', gridTemplateColumns: `repeat(${newSlidesPerView}, 1fr)`, gap: '20px', justifyContent: 'center', margin: '20px' }}>
+  <div style={{ display: 'grid', gridTemplateColumns: `repeat(${newSlidesPerView}, 1fr)`, gap: '20px', justifyContent: 'center', margin: '15px' }}>
             {currentImages.map((imageUrl, index) => (
               <img
                 key={index}
