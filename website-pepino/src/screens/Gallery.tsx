@@ -45,12 +45,13 @@ import { Box, FormControl, InputBase, InputLabel, MenuItem, Select, SelectChange
 import LightGallery from 'lightgallery/react';
 
 // import styles
-import 'lightgallery/css/lightgallery.css';
-import 'lightgallery/css/lg-zoom.css';
-import 'lightgallery/css/lg-thumbnail.css';
+import './Gallery.css';
 
 import lgThumbnail from 'lightgallery/plugins/thumbnail';
 import lgZoom from 'lightgallery/plugins/zoom';
+import Multiselect from 'multiselect-react-dropdown';
+import Lightbox from 'react-image-lightbox';
+import 'react-image-lightbox/style.css'; // Assurez-vous d'importer les styles
 
 const BootstrapInput = styled(InputBase)(({ theme }) => ({
   'label + &': {
@@ -86,43 +87,32 @@ const BootstrapInput = styled(InputBase)(({ theme }) => ({
 }));
 
 const Gallery: React.FC = () => {
+
+  interface Category {
+    name: string;
+    id: number;
+  }
+
   const [slidesPerView, setSlidesPerView] = useState(3);
   const floralImg = [floral1,floral2,floral3,floral4,floral5,floral6,floral7,floral8,floral9,floral10];
   const animauxImg = [animal1,animal2,animal3,animal4,animal5,animal6,animal7,animal8,animal9];
   const ornementalImg = [ornemental1,ornemental2,ornemental3,ornemental4,ornemental5,ornemental6,ornemental7,ornemental8,ornemental9];
 
   const allImg = floralImg.concat(animauxImg,ornementalImg)
+  
+
 
   const [currentImages, setCurrentImages] = useState(allImg);
-  const [filter, setFilter] = useState(0);
+  const [filter, setFilter] = useState<string[]>([]);
   const [newSlidesPerView, setnewSlidesPerView] = useState(5)
   
-  const choiceImg = (event: SelectChangeEvent<number>) => {
-    const selectedValue = event.target.value as number;
-    setFilter(selectedValue)
-    switch (selectedValue) {
-      case 0:
-        setCurrentImages(allImg);
-        break;
-      case 1:
-        setCurrentImages(ornementalImg);
-        break;
-      case 2:
-        setCurrentImages(animauxImg);
-        break;
-      case 3:
-        setCurrentImages(floralImg);
-        break;
-      default:
-        // Défaut, si filter ne correspond à aucun cas
-        setCurrentImages(allImg);
-        break;
-    }
-  };
+  
 
   const onInit = () => {
     console.log('lightGallery has been initialized');
 };
+
+
 
   useEffect(() => {
     const handleResize = () => {
@@ -151,47 +141,129 @@ const Gallery: React.FC = () => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
+
+  const categories = [ {name :"Floral", id:1},{name :"Animal", id:2},{name :"Ornemental", id:3}]
+  const [selectedCategories, setSelectedCategories] = useState<Category[]>(categories);
+
+
+
+  const onSelect = (selectedList: Category[], selectedItem: Category) => {
+    // Utilisez une fonction de rappel pour garantir l'utilisation de l'état le plus récent
+    setSelectedCategories((prevSelectedCategories) => [...prevSelectedCategories, selectedItem]);
+  
+    let selectImg: string[] = [];
+  
+    selectedList.forEach((element) => {
+      if (element.name === "Floral") {
+        selectImg = selectImg.concat(floralImg);
+      }
+      if (element.name === "Animal") {
+        selectImg = selectImg.concat(animauxImg);
+      }
+      if (element.name === "Ornemental") {
+        selectImg = selectImg.concat(ornementalImg);
+      }
+    });
+  
+    setCurrentImages(selectImg);
+  };
+  
+  const onRemove = (selectedList: Category[], removedItem: Category) => {
+    setSelectedCategories((prevSelectedCategories) =>
+      prevSelectedCategories.filter((category) => category.id !== removedItem.id)
+    );
+  
+    let selectImg: string[] = [];
+  
+    selectedList.forEach((element) => {
+      if (element.name === "Floral") {
+        selectImg = selectImg.concat(floralImg);
+      }
+      if (element.name === "Animal") {
+        selectImg = selectImg.concat(animauxImg);
+      }
+      if (element.name === "Ornemental") {
+        selectImg = selectImg.concat(ornementalImg);
+      }
+    });
+  
+    setCurrentImages(selectImg);
+  };
+
+  const [lightboxIsOpen, setLightboxIsOpen] = useState(false);
+  const [lightboxIndex, setLightboxIndex] = useState(0);
+
+  const openLightbox = (index:number) => {
+    setLightboxIndex(index);
+    setLightboxIsOpen(true);
+  };
+
+  const closeLightbox = () => {
+    setLightboxIsOpen(false);
+  };
+
   return (
     <>
     
-    <Box>
-       <FormControl variant="standard" style={{ width:"380px", paddingLeft:"182px"}}>
-        <div style={{paddingBottom:"20px"}}>
-            <Select
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
-              value={filter}
-              label="Filtre"
-              onChange={choiceImg}
-              input={<BootstrapInput />}
-              
-            >
-              <MenuItem value={0}>Tout</MenuItem>
-              <MenuItem value={1}>Ornemental</MenuItem>
-              <MenuItem value={2}>Animaux</MenuItem>
-              <MenuItem value={3}>Floral</MenuItem>
-            
-          </Select>
-                  
-        </div>
-        </FormControl>
        
-        <div style={{ display: "grid", gridTemplateColumns: `repeat(${newSlidesPerView}, 1fr)`, gap: "20px", justifyContent: "center", margin: "20px" }}>
-        
-          {currentImages.map((imageUrl, index) => (
-             <LightGallery
-             onInit={onInit}
-             speed={500}
-             plugins={[lgThumbnail, lgZoom]}
-             
-         >
-            <img key={index} src={imageUrl} alt={`Image ${index + 1}`} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
-            </LightGallery>
-          ))}
-         
-        </div>
-       
-      </Box>
+  <div style={{display:"flex",justifyContent:"center",paddingBottom:"40px"}}>
+  <Typography className='TitleAbout' sx={{ fontSize: "35px", fontFamily: 'Roboto-Bold', paddingBottom:"40px" }}>
+    Gallerie image
+  </Typography>
+  </div>
+
+<div style={{ display: 'grid', gridTemplateColumns: '0.8fr 3.2fr', gap: '20px' }}>
+  {/* Colonne du FormControl à gauche */}
+  <div style = {{ borderRightWidth: "2px", borderColor: "black", display:"flex", flexDirection: "column"}}>
+  
+  <Typography sx={{ fontSize: "20px", fontFamily: 'Roboto-Bold', display:"flex",justifyContent:"center" , paddingBottom:"20px"}}>Categorie</Typography>
+  <div style={{display:"flex", flexDirection: "row", justifyContent:"center"}}>
+  <FormControl variant="standard" style={{ borderWidth:"2px", border:"-moz-initial",display:"flex",alignItems:"center", flexDirection:"row"}}>
+  
+  <div className="customWidth">
+    <Multiselect
+        options={categories} // Options to display in the dropdown
+        selectedValues={selectedCategories} // Preselected value to persist in dropdown
+        onSelect={onSelect} // Function will trigger on select event
+        onRemove={onRemove} // Function will trigger on remove event
+        displayValue="name" // Property name to display in the dropdown options
+        className="custom-multiselect"
+        />
+    </div>
+  
+  </FormControl>
+  </div>
+  </div>
+
+  {/* Colonne de la Box (galerie d'images) à droite */}
+  <Box>
+  <div style={{ display: "grid", gridTemplateColumns: `repeat(${newSlidesPerView}, 1fr)`, gap: "20px", justifyContent: "center", margin: "20px" }}>
+        {currentImages.map((imageUrl, index) => (
+          <img
+            key={index}
+            src={imageUrl}
+            alt={`Image ${index + 1}`}
+            style={{ width: "100%", height: "100%", objectFit: "cover", cursor: "pointer" }}
+            onClick={() => openLightbox(index)}
+          />
+        ))}
+      </div>
+
+      {lightboxIsOpen && (
+        <Lightbox
+          mainSrc={currentImages[lightboxIndex]}
+          nextSrc={currentImages[(lightboxIndex + 1) % currentImages.length]}
+          prevSrc={currentImages[(lightboxIndex + currentImages.length - 1) % currentImages.length]}
+          onCloseRequest={closeLightbox}
+          onMovePrevRequest={() => setLightboxIndex((lightboxIndex + currentImages.length - 1) % currentImages.length)}
+          onMoveNextRequest={() => setLightboxIndex((lightboxIndex + 1) % currentImages.length)}
+        />
+      )}
+    <div style={{ display:"flex", justifyContent:"center", paddingBottom:"200px"}}>
+      {currentImages.length === 0 ? <p>Aucun résultat</p> : null}
+    </div>
+  </Box>
+</div>
     
     
     </>

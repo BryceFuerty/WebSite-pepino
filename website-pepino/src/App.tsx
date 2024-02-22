@@ -7,7 +7,7 @@ import { Contact } from './screens/Contact';
 import { Home } from './screens/Home';
 import { NavLink, Route,Routes, useLocation } from 'react-router-dom';
 import LogoBack from './logo-noir-or-vecto-uni_1.png'
-import Gallery from './screens/Gallery';
+import Gallerys from './screens/Gallery';
 import ImagePep from '../profil.jpg';
 import './styles.css';
 import { Box, Container } from '@mui/material';
@@ -31,7 +31,7 @@ function App() {
         <div style={{ marginTop: isGallery ? '20px' : '200px' }}>
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/gallery" element={<Gallery />} />
+            <Route path="/gallery" element={<Gallerys />} />
             <Route path="/contact" element={<Contact />} />
           </Routes>
         </div>
