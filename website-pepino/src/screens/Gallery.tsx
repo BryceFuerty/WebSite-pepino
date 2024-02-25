@@ -230,7 +230,7 @@ const Gallery: React.FC = () => {
 
 <div style={{ display: 'grid', gridTemplateColumns: '0.8fr 3.2fr', gap: '20px' }}>
   {/* Colonne du FormControl à gauche */}
-  <div style = {{ borderRightWidth: "2px", borderColor: "black", display:"flex", flexDirection: "column"}}>
+  <div style = {{ borderColor: "black", display:"flex", flexDirection: "column", backgroundColor:"#dee2e6"}}>
   
   <Typography sx={{ fontSize: "20px", fontFamily: 'Roboto-Bold', display:"flex",justifyContent:"center" , paddingBottom:"20px"}}>Categorie</Typography>
   <div style={{display:"flex", flexDirection: "row", justifyContent:"center"}}>

@@ -22,13 +22,15 @@ export const Home = () =>  {
                   <h2 className='TitleAbout'>A mon propos</h2>
                   <p className='DescAbout'>
                     
-Tatoueur depuis 10 ans, mon travail est essentiellement axé sur les tatouages personnalisés,
-je maitrise une large gamme de style, mais je mets l'accent essentiellement sur le tatouage réaliste et ultra réaliste black and grey, le tatouage floral et géométrique (petites et très grosses pièces).
-Je me plais également à travailler le style néo traditionnel, japonais, graphique. Mon approche première se fait le plus souvent via un ou deux rdv projet pour établir un premier contact et déterminer les attentes du client et si elles correspondent également à mes exigences techniques afin d'assurer un travail abouti.
-Je mets essentiellement l'accent sur l'échange mutuel et la transparence des conseils, je m'efforce également de considérer chaque demande, qu'elle concerne un petit ou un gros tatouage. Je fonctionne également sous forme de salon privé pour une simple
-raison de prestation, mon client doit être dans les meilleurs conditions pour apprécier ce moment ! 
-
-
+                  Tatoueur depuis 10 ans, mon travail est essentiellement axé sur les tatouages personnalisés,
+                  je maitrise une large gamme de style, mais je mets l'accent essentiellement sur le tatouage réaliste et ultra réaliste black and grey, le tatouage floral et géométrique (petites et très grosses pièces).
+                  Je me plais également à travailler le style néo traditionnel, japonais, graphique.
+                  <br/>
+                  Mon approche première se fait le plus souvent via un ou deux rdv projet pour établir un premier contact et déterminer les attentes du client et si elles correspondent également à mes exigences techniques afin d'assurer un travail abouti.
+                  Je mets essentiellement l'accent sur l'échange mutuel et la transparence des conseils, je m'efforce également de considérer chaque demande, qu'elle concerne un petit ou un gros tatouage. 
+                  <br/>
+                  Je fonctionne également sous forme de salon privé pour une simple
+                  raison de prestation, mon client doit être dans les meilleurs conditions pour apprécier ce moment ! 
                   </p>
                   <p className='DescAbout'>Je ne vends pas des tatouages mais je propose une expérience !</p>
                 </div>

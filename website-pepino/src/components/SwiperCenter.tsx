@@ -32,8 +32,8 @@ export default function SwipeCenter() {
       console.log(widthSwp)
       
       if (window.innerWidth > 700) {
-        setwidthSwp(40);
-        setheightSwp(35)
+        setwidthSwp(35);
+        setheightSwp(30)
       }else {
         setwidthSwp(20);
         setheightSwp(20)
